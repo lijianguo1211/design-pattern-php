@@ -1,7 +1,8 @@
 {
   "autoload": {
     "psr-4": {
-      "Observer\\": "observer/"
+      "Observer\\": "observer/",
+      "Singleton\\": "singleton/"
     }
   }
 }
