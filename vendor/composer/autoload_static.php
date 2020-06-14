@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Singleton\\' => 10,
+        ),
         'O' => 
         array (
             'Observer\\' => 9,
@@ -14,6 +18,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
     );
 
     public static $prefixDirsPsr4 = array (
+        'Singleton\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/singleton',
+        ),
         'Observer\\' => 
         array (
             0 => __DIR__ . '/../..' . '/observer',
