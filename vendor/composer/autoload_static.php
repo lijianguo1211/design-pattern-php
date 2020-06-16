@@ -16,6 +16,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         array (
             'Observer\\' => 9,
         ),
+        'C' => 
+        array (
+            'ChainOfResponsibilities\\' => 24,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -30,6 +34,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'Observer\\' => 
         array (
             0 => __DIR__ . '/../..' . '/observer',
+        ),
+        'ChainOfResponsibilities\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/chainOfResponsibilities',
         ),
     );
 
