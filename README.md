@@ -73,9 +73,343 @@ $teacher->subject('四', '英文');
 //早上8:45，第一节课是王老师正在给 （四）班上英文课
 ```
 
+* ps 再比如现在有一个交通工具的类，类里面有一个`run()`方法
+
+```php
+class TrafficTest
+{
+    public function run(string $name)
+    {
+        echo $name .  ' 在公路上行驶' . PHP_EOL;
+    }
+}
+$traffic = new TrafficTest();
+//汽车
+$traffic->run('汽车');
+//轮船
+$traffic->run('轮船');
+//飞机
+$traffic->run('飞机');
+
+/**
+* 汽车 在公路上行驶
+  轮船 在公路上行驶
+  飞机 在公路上行驶
+ */
+```
+
+这个`run()`方法接收不同的参数，不同的交通工具在里面都可以运行，但是结果却不是最好的，汽车是可以在公路上行驶，但是飞机是在空中飞的，轮船是在
+水里的，都在公路上了，就不对了，这样的一个方法运行一个汽车就可以了，它做的太多了，结果却做不好，我们可以优化一下，让它只做一件事儿，比如方法一
+`run()`方法不动，把它定义为一个接口，定义三个字类（汽车类，轮船类，飞机类）来实现这个`run()`方法，这样就是一个类作为单一行为来区分，这样更加
+明确，但是唯一的缺点，要创建很多的不同类。方法二：在这个交通方法里，分别创建三个不同的方法，每个方法只做与它相关的事儿，比如下面这样，就可以保证
+它们之间是不会相互影响的。
+
+```php
+class TrafficTest
+{
+    public function carRun()
+    {
+        echo '汽车在公路上行驶' . PHP_EOL;
+    }
+
+    public function aircraftRun()
+    {
+        echo '飞机在天空飞行' . PHP_EOL;
+    }
+    
+    public function shipRun()
+    {
+        echo '轮船在大海里航行' . PHP_EOL;
+    }
+}
+
+```
+
 * 接口隔离
 
+客户端不应该依赖它不需要的接口，即一个类对另外一个类的依赖应该建立在最小的接口上
+
+比如我们有一个接口`BaseInterface`,里面定义了`index(), show(), edit(), update(), delete()`这五个接口
+
+```php
+interface BaseInterface 
+{
+    public function index();
+    
+    public function show();
+    
+    public function edit();
+    
+    public function update();
+    
+    public function delete();
+}
+```
+
+现在有一个`Home`类，这个类是要去实现这个`BaseInterface`的接口，但是它只需要其中的一个方法`index()`,剩下的接口，它都不需要，但是它继承了
+这个上一层的接口，就必须实现它里面的所有方法，所以必须有一个默认实现
+
+```php
+class Home implements BaseInterface
+{
+
+    public function index()
+    {
+        // TODO: Implement index() method.
+        echo '查看全部的入口' . PHP_EOL;
+    }
+
+    public function show()
+    {
+        // TODO: Implement show() method.
+    }
+
+    public function edit()
+    {
+        // TODO: Implement edit() method.
+    }
+
+    public function update()
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete()
+    {
+        // TODO: Implement delete() method.
+    }
+}
+```
+
+还有一个类`Post`这个是一个管理所有的文章的类，它需要去实现`BaseInterface`的除了`delete()`方法的所有接口
+
+```php
+class Post implements  BaseInterface
+{
+
+    public function index()
+    {
+        // TODO: Implement index() method.
+        echo '查看文章列表' . PHP_EOL;
+    }
+
+    public function show()
+    {
+        // TODO: Implement show() method.
+        echo '查看文章' . PHP_EOL;
+    }
+
+    public function edit()
+    {
+        // TODO: Implement edit() method.
+        echo '编辑文章' . PHP_EOL;
+    }
+
+    public function update()
+    {
+        // TODO: Implement update() method.
+        echo '更新文章' . PHP_EOL;
+    }
+
+    public function delete()
+    {
+        // TODO: Implement delete() method.
+    }
+}
+```
+
+最后一个管理员的类`Admin`也需要去实现`BaseInterface`的接口，而它是需要实现除了`index()`之外它所有的接口
+
+```php
+class Admin implements BaseInterface
+{
+
+    public function index()
+    {
+        // TODO: Implement index() method.
+    }
+
+    public function show()
+    {
+        // TODO: Implement show() method.
+        echo '查看用户' . PHP_EOL;
+    }
+
+    public function edit()
+    {
+        // TODO: Implement edit() method.
+        echo '编辑添加用户' . PHP_EOL;
+    }
+
+    public function update()
+    {
+        // TODO: Implement update() method.
+        echo '修改用户' . PHP_EOL;
+    }
+
+    public function delete()
+    {
+        // TODO: Implement delete() method.
+        echo '删除用户' . PHP_EOL;
+    }
+}
+```
+
+这个时候，我们就会发现，`Home`类只需要`index()`方法，`Post`类需要除了`delete()`方法之外的所有方法，`Admin`类需要除了`index()`方法之外
+的所有方法，里面有很多方法都是当前这个类所不需要的，但是，还是要去实现它，这样一来是一种浪费，资源的开销，二来也不符合设计模式的接口隔离原则，
+是很不友好的。如果我们把`BaseInterface`这个接口分为三个小的接口，下面每个字类只需要去对应实现各自需要的接口，互不干扰，这样的话就会使程序看
+起来很舒服，很安全，健壮。你如这样实现上面的例子：
+
+```php
+interface BaseInterface1
+{
+    public function index();
+}
+
+interface BaseInterface2 
+{
+    public function show();
+    
+    public function edit();
+    
+    public function update();
+}
+
+interface BaseInterface3
+{
+    public function delete();
+}
+
+class Home1 implements BaseInterface1
+{
+
+    public function index()
+    {
+        // TODO: Implement index() method.
+    }
+}
+
+class Post1 implements BaseInterface1, BaseInterface2
+{
+
+    public function index()
+    {
+        // TODO: Implement index() method.
+    }
+
+    public function show()
+    {
+        // TODO: Implement show() method.
+    }
+
+    public function edit()
+    {
+        // TODO: Implement edit() method.
+    }
+
+    public function update()
+    {
+        // TODO: Implement update() method.
+    }
+}
+
+class Admin1 implements BaseInterface2, BaseInterface3
+{
+
+    public function show()
+    {
+        // TODO: Implement show() method.
+    }
+
+    public function edit()
+    {
+        // TODO: Implement edit() method.
+    }
+
+    public function update()
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete()
+    {
+        // TODO: Implement delete() method.
+    }
+}
+
+```
+
 * 依赖倒置
+
+1. 高层模块不应该依赖底层模块，二者都应该依赖抽象
+
+2. 抽象不应该依赖细节，细节应该依赖抽象
+
+3. 依赖倒置的中心思想就是面向接口编程
+
+4. 相对于细节的多变性，抽象比细节要稳定的多，以抽象搭建的东西比以细节搭建的东西稳定的的多，（抽象在这里可以抽象类，接口，细节就是具体实现类）
+
+5. 使用抽象和接口的目的就是制定好规范，而不涉及具体的操作，把实现细节的任务交给具体的类去实现
+
+比如现在有一个接收信息处理的类`Person`,里面有一个接受消息的方法`getInfo()`,这里是接受Emali的消息，所有我们把`Email`类作为参数传递进去
+
+```php
+class Email
+{
+    public function sendInfo()
+    {
+        echo '发送邮件消息' . PHP_EOL;
+    }
+}
+
+class Person
+{
+    public function getInfo(Email $email)
+    {
+        $email->sendInfo();
+    }
+}
+```
+
+现在应为需求变化，`Person`类还要可以接收短信类的消息，这个时候，这个`getInfo()`方法因为是固定参数为Email,就代表现有的方法，是不能使用的，
+要去修改`getInfo()`的参数，或者另外再加一个方法，这样做的话，就破坏了这个类的封装，没有一个好的扩展性，不利于维护，如果下次再加一个发送消息
+的渠道，还要去修改，所有我们可以把所有发送消息的类型定义为一个接口，下面是各种消息类型的实现，而`getInfo()`方法也是去依赖这个接口，不是去依赖
+具体的实现，不管以后要添加多少发送消息的种类，只需要去实现这个消息的接口就可以了，在接受消息类里面，我们是需要去改变一丝一毫的。比如：
+
+```php
+interface InfoInterface
+{
+    public function sendInfo();
+}
+
+class Email1 implements InfoInterface
+{
+
+    public function sendInfo()
+    {
+        // TODO: Implement sendInfo() method.
+        echo '发送邮件消息' . PHP_EOL;
+    }
+}
+
+class SMS implements InfoInterface
+{
+
+    public function sendInfo()
+    {
+        // TODO: Implement sendInfo() method.
+        echo '发送短信消息' . PHP_EOL;
+    }
+}
+
+class Person1
+{
+    public function getInfo(InfoInterface $info)
+    {
+        $info->sendInfo();
+    }
+}
+```
 
 * 里氏替换
 
