@@ -428,8 +428,136 @@ class Person1
 
 2. 当软件变化的时候，尽量通过扩展软件实体类的行为来实现变化，而不是通过修改已有的代码来实现变化
 
+3. 例子：设计一个画图的软件，可以画各种图形，
+
+不好的实现：在添加另外一个画图方法的时候，首先需要先继承`Type`抽象类，设置一个`type`的类型，然后再在`Drawing`类里`drawing()`方法添加一个
+`switch`类型，最后再加一个画图的方法，供它调用，需要修改的地方有很多。
+
+```php
+class OpenAndCloseTest
+{
+    public function __construct()
+    {
+        $drawing = new Drawing();
+        $drawing->drawing(new Circular());
+        $drawing->drawing(new triangle());
+    }
+}
+
+class Drawing
+{
+    public function drawing(Type $type)
+    {
+        switch ($type->type) {
+            case 1:
+                $this->dropCircular();
+                break;
+            case 2:
+                $this->dropTriangle();
+                break;
+        }
+    }
+
+    public function dropCircular()
+    {
+        echo "画圆形" . PHP_EOL;
+    }
+
+    public function dropTriangle()
+    {
+        echo "画三角形" . PHP_EOL;
+    }
+}
+
+abstract class Type
+{
+    public $type;
+}
+
+class Circular extends Type
+{
+    public function __construct()
+    {
+        $this->type = 1;
+    }
+}
+
+class triangle extends Type
+{
+    public function __construct()
+    {
+        $this->type = 2;
+    }
+}
+
+new OpenAndCloseTest();
+```
+
+好的实现：各个画图的方法就是继承画图的基类，然后在各自类中自己实现，在画图的工具类中，也不需要再去加判断了，只需要调用画图的方法就好了，想要
+画那个图形，在类外面传入进去就可以了，如果以后还想要扩展，也只需要去继承一个画图的基类，然后自己去实现，别的任何一个地方的代码都不需要修改
+
+```php
+class OpenAndCloseUpgradeTest
+{
+    public function __construct()
+    {
+        $drawingTest = new DrawingTest();
+
+        $drawingTest->draw(new CircularTest());
+
+        $drawingTest->draw(new triangleTest());
+    }
+}
+
+class DrawingTest
+{
+    public function draw(TypeTest $draw)
+    {
+        $draw->drawing();
+    }
+}
+
+abstract class TypeTest
+{
+    abstract public function drawing();
+}
+
+class CircularTest extends TypeTest
+{
+
+    public function drawing()
+    {
+        // TODO: Implement drawing() method.
+        echo "画圆形" . PHP_EOL;
+    }
+}
+
+class triangleTest extends TypeTest
+{
+
+    public function drawing()
+    {
+        // TODO: Implement drawing() method.
+        echo "画三角形" . PHP_EOL;
+    }
+}
+
+new OpenAndCloseUpgradeTest();
+```
+
 * 迪米特
 
+1. 一个对象应该对其它对象保持最少的了解
+
+2. 类与类关系越密切，耦合度越大
+
+3. 迪米特法则又叫最少知道原则，即一个类对自己依赖的类知道的越少越好。对于被依赖的类不管多么复杂，都尽量将逻辑封装在类的内部，对爱只提供一个
+`public`方法，不对外泄露任何信息
+
+4. 只与直接的朋友通信（直接的朋友，成员变量，方法参数，方法返回值中的类为直接朋友，出现在局部变量中的类不是直接朋友）
+
 * 合成复用
+
+尽量使用合成/聚合方式来代替继承
 
 
