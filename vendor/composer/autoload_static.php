@@ -22,6 +22,7 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         ),
         'C' => 
         array (
+            'Composite\\' => 10,
             'ChainOfResponsibilities\\' => 24,
         ),
     );
@@ -42,6 +43,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'Observer\\' => 
         array (
             0 => __DIR__ . '/../..' . '/observer',
+        ),
+        'Composite\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/composite',
         ),
         'ChainOfResponsibilities\\' => 
         array (
