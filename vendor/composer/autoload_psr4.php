@@ -10,5 +10,6 @@ return array(
     'Strategy\\' => array($baseDir . '/strategy'),
     'Singleton\\' => array($baseDir . '/singleton'),
     'Observer\\' => array($baseDir . '/observer'),
+    'Composite\\' => array($baseDir . '/composite'),
     'ChainOfResponsibilities\\' => array($baseDir . '/chainOfResponsibilities'),
 );
