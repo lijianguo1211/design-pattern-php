@@ -20,6 +20,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         array (
             'Observer\\' => 9,
         ),
+        'F' => 
+        array (
+            'Fluent\\' => 7,
+        ),
         'C' => 
         array (
             'Composite\\' => 10,
@@ -43,6 +47,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'Observer\\' => 
         array (
             0 => __DIR__ . '/../..' . '/observer',
+        ),
+        'Fluent\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/fluent',
         ),
         'Composite\\' => 
         array (
