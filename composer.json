@@ -6,7 +6,8 @@
       "Singleton\\": "singleton/",
       "Strategy\\": "strategy/",
       "ChainOfResponsibilities\\": "chainOfResponsibilities/",
-      "Composite\\": "composite/"
+      "Composite\\": "composite/",
+      "Fluent\\": "fluent"
     }
   }
 }
