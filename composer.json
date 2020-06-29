@@ -7,7 +7,8 @@
       "Strategy\\": "strategy/",
       "ChainOfResponsibilities\\": "chainOfResponsibilities/",
       "Composite\\": "composite/",
-      "Fluent\\": "fluent"
+      "Fluent\\": "fluent/",
+      "Adapter\\": "adapter/"
     }
   }
 }
