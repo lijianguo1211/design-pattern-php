@@ -13,4 +13,5 @@ return array(
     'Fluent\\' => array($baseDir . '/fluent'),
     'Composite\\' => array($baseDir . '/composite'),
     'ChainOfResponsibilities\\' => array($baseDir . '/chainOfResponsibilities'),
+    'Adapter\\' => array($baseDir . '/adapter'),
 );
