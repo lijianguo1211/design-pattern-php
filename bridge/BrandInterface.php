@@ -10,5 +10,9 @@ namespace Bridge;
 
 interface BrandInterface
 {
+    public function call();
 
+    public function open();
+
+    public function close();
 }
