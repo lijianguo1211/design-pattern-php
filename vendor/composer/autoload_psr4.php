@@ -13,5 +13,6 @@ return array(
     'Fluent\\' => array($baseDir . '/fluent'),
     'Composite\\' => array($baseDir . '/composite'),
     'ChainOfResponsibilities\\' => array($baseDir . '/chainOfResponsibilities'),
+    'Bridge\\' => array($baseDir . '/bridge'),
     'Adapter\\' => array($baseDir . '/adapter'),
 );

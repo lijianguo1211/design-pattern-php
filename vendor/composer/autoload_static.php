@@ -29,6 +29,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
             'Composite\\' => 10,
             'ChainOfResponsibilities\\' => 24,
         ),
+        'B' => 
+        array (
+            'Bridge\\' => 7,
+        ),
         'A' => 
         array (
             'Adapter\\' => 8,
@@ -63,6 +67,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'ChainOfResponsibilities\\' => 
         array (
             0 => __DIR__ . '/../..' . '/chainOfResponsibilities',
+        ),
+        'Bridge\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/bridge',
         ),
         'Adapter\\' => 
         array (
