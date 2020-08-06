@@ -23,6 +23,7 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'F' => 
         array (
             'Fluent\\' => 7,
+            'Facade\\' => 7,
         ),
         'C' => 
         array (
@@ -59,6 +60,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'Fluent\\' => 
         array (
             0 => __DIR__ . '/../..' . '/fluent',
+        ),
+        'Facade\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/facade',
         ),
         'Composite\\' => 
         array (

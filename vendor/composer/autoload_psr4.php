@@ -11,6 +11,7 @@ return array(
     'Singleton\\' => array($baseDir . '/singleton'),
     'Observer\\' => array($baseDir . '/observer'),
     'Fluent\\' => array($baseDir . '/fluent'),
+    'Facade\\' => array($baseDir . '/facade'),
     'Composite\\' => array($baseDir . '/composite'),
     'ChainOfResponsibilities\\' => array($baseDir . '/chainOfResponsibilities'),
     'Bridge\\' => array($baseDir . '/bridge'),
