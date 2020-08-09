@@ -9,7 +9,9 @@
       "Composite\\": "composite/",
       "Fluent\\": "fluent/",
       "Adapter\\": "adapter/",
-      "Bridge\\": "bridge/"
+      "Bridge\\": "bridge/",
+      "Facade\\": "facade",
+      "Template\\": "template"
     }
   }
 }

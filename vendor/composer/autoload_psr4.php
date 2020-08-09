@@ -7,10 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Test\\' => array($baseDir . '/test'),
+    'Template\\' => array($baseDir . '/template'),
     'Strategy\\' => array($baseDir . '/strategy'),
     'Singleton\\' => array($baseDir . '/singleton'),
     'Observer\\' => array($baseDir . '/observer'),
     'Fluent\\' => array($baseDir . '/fluent'),
+    'Facade\\' => array($baseDir . '/facade'),
     'Composite\\' => array($baseDir . '/composite'),
     'ChainOfResponsibilities\\' => array($baseDir . '/chainOfResponsibilities'),
     'Bridge\\' => array($baseDir . '/bridge'),
