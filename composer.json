@@ -10,7 +10,8 @@
       "Fluent\\": "fluent/",
       "Adapter\\": "adapter/",
       "Bridge\\": "bridge/",
-      "Facade\\": "facade"
+      "Facade\\": "facade",
+      "Template\\": "template"
     }
   }
 }

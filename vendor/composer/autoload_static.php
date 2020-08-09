@@ -10,6 +10,7 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'T' => 
         array (
             'Test\\' => 5,
+            'Template\\' => 9,
         ),
         'S' => 
         array (
@@ -44,6 +45,10 @@ class ComposerStaticInit4e23f854969577b6b9526adb5b4ce60f
         'Test\\' => 
         array (
             0 => __DIR__ . '/../..' . '/test',
+        ),
+        'Template\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/template',
         ),
         'Strategy\\' => 
         array (
