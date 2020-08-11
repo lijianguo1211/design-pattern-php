@@ -11,7 +11,8 @@
       "Adapter\\": "adapter/",
       "Bridge\\": "bridge/",
       "Facade\\": "facade",
-      "Template\\": "template"
+      "Template\\": "template",
+      "Visitor\\": "visitor"
     }
   }
 }
